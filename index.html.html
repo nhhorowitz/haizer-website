@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Haizer — Homes. Flips. Rentals. Direct.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="haizer-styles.css" />
+
+<script>
+  /* TWEAK_DEFAULTS is read by the host on disk-write — keep this exact format */
+  window.__TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "primary": "#064E3B",
+    "page": "#FAF8F3",
+    "density": "regular",
+    "cardRadius": 12,
+    "heroVariant": "full",
+    "searchType": "dropdown",
+    "featGrid": "auto",
+    "cityAspect": "4:3",
+    "connector": "dashed",
+    "motion": true,
+    "heading": "Homes. Flips. Rentals. Direct.",
+    "sub": "Buy, sell, rent, and flip — all in one place. Free to list, always.",
+    "ctaHeading": "Sell or rent — totally free",
+    "ctaSub": "No commissions, no hidden fees. List in minutes."
+  }/*EDITMODE-END*/;
+</script>
+</head>
+<body>
+
+<!-- ====================================================================== -->
+<!-- 01 — TOP NAVIGATION                                                     -->
+<!-- ====================================================================== -->
+<header class="nav" id="nav" data-screen-label="Top navigation">
+  <div class="nav-inner">
+    <a href="#" class="wordmark" aria-label="Haizer home">
+      <span class="wordmark__mark" aria-hidden="true"><span class="wordmark__cutout"></span></span>
+      <span>Haizer</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#buy" aria-current="page">Buy</a></li>
+        <li><a class="nav-link" href="#sell">Sell</a></li>
+        <li><a class="nav-link" href="#rent">Rent</a></li>
+        <li><a class="nav-link" href="#investors">Investors</a></li>
+        <li><a class="nav-link" href="#tools">Tools</a></li>
+        <li><a class="nav-link" href="#directory">Directory</a></li>
+        <li><a class="nav-link" href="#field-notes">Field notes</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a href="#" class="list-free">
+        <span class="list-free__plus" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </span>
+        List for free
+      </a>
+      <a href="#" class="btn-primary">Sign in</a>
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="hamburger__lines" aria-hidden="true"><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile menu">
+  <ul class="mobile-menu__list">
+    <li><a class="mobile-menu__link" href="#buy">Buy</a></li>
+    <li><a class="mobile-menu__link" href="#sell">Sell</a></li>
+    <li><a class="mobile-menu__link" href="#rent">Rent</a></li>
+    <li><a class="mobile-menu__link" href="#investors">Investors</a></li>
+    <li><a class="mobile-menu__link" href="#tools">Tools</a></li>
+    <li><a class="mobile-menu__link" href="#directory">Directory</a></li>
+    <li><a class="mobile-menu__link" href="#field-notes">Field notes</a></li>
+  </ul>
+  <div class="mobile-menu__actions">
+    <a href="#" class="mobile-menu__signin">
+      <span class="list-free__plus" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </span>
+      List for free
+    </a>
+    <a href="#" class="btn-primary">Sign in</a>
+  </div>
+</div>
+<div class="scrim" aria-hidden="true"></div>
+
+<!-- ====================================================================== -->
+<!-- 02 — HERO                                                               -->
+<!-- ====================================================================== -->
+<section class="hero" data-screen-label="Hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Free to list · No agent fees</span>
+    <h1 class="hero-headline" id="heroHeadline">Homes. Flips. Rentals. <span class="accent">Direct.</span></h1>
+    <p class="hero-sub" id="heroSub">Buy, sell, rent, and flip — all in one place. Free to list, always.</p>
+
+    <form class="search" role="search" onsubmit="event.preventDefault();">
+      <!-- Listing-type selector (segmented OR dropdown, toggled by body.search-dropdown class) -->
+      <div class="toggle" role="tablist" aria-label="Listing type">
+        <button class="toggle__btn" type="button" aria-pressed="true">Buy</button>
+        <button class="toggle__btn" type="button" aria-pressed="false">Rent</button>
+        <button class="toggle__btn" type="button" aria-pressed="false">Flip</button>
+      </div>
+
+      <div class="type-dropdown" id="typeDropdown">
+        <button class="type-dropdown__btn" type="button" id="typeBtn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="type-dropdown__val" id="typeBtnVal">Buy</span>
+          <svg class="type-dropdown__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 2l5 5 5-5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="type-dropdown__menu" role="listbox" aria-labelledby="typeBtn">
+          <li role="option" data-val="Buy" aria-selected="true">
+            <span class="type-dropdown__label">Buy</span>
+            <span class="type-dropdown__hint">homes for sale</span>
+          </li>
+          <li role="option" data-val="Rent">
+            <span class="type-dropdown__label">Rent</span>
+            <span class="type-dropdown__hint">rentals &amp; sublets</span>
+          </li>
+          <li role="option" data-val="Flip">
+            <span class="type-dropdown__label">Flip</span>
+            <span class="type-dropdown__hint">deals with auto-profit math</span>
+          </li>
+        </ul>
+      </div>
+
+      <span class="search__divider" aria-hidden="true"></span>
+      <label class="search__field">
+        <svg class="search__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="6.25" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M14 14l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input class="search__input" type="text" placeholder="Search by city, address, or ZIP" aria-label="Search by city, address, or ZIP" />
+      </label>
+      <button class="btn-primary" type="submit">Search</button>
+    </form>
+
+    <ul class="filters" aria-label="Quick filters">
+      <li><button class="filter-pill" type="button" aria-pressed="false">Under $500K</button></li>
+      <li><button class="filter-pill" type="button" aria-pressed="false">3+ beds</button></li>
+      <li><button class="filter-pill" type="button" aria-pressed="false">Move-in ready</button></li>
+      <li><button class="filter-pill" type="button" aria-pressed="false">New to market</button></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 03 — TRUST STRIP                                                        -->
+<!-- ====================================================================== -->
+<section class="trust" aria-label="Marketplace stats" data-screen-label="Trust strip">
+  <div class="trust-inner">
+    <div class="trust__item"><span class="trust__num">28,400</span><span>active listings</span></div>
+    <span class="trust__dot" aria-hidden="true"></span>
+    <div class="trust__item"><span class="trust__num">$0</span><span>to list</span></div>
+    <span class="trust__dot" aria-hidden="true"></span>
+    <div class="trust__item"><span class="trust__num">1,200+</span><span>flips closed</span></div>
+    <span class="trust__dot" aria-hidden="true"></span>
+    <div class="trust__item"><span class="trust__num">9,800</span><span>verified pros</span></div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 04 — FEATURED HOMES                                                     -->
+<!-- ====================================================================== -->
+<section class="section" id="buy" data-screen-label="Featured homes" aria-label="Featured homes">
+  <div class="section-inner">
+    <header class="section-head">
+      <div>
+        <h2 class="section-title">Featured homes</h2>
+        <p class="section-lede">Hand-picked listings across the marketplace — updated daily.</p>
+      </div>
+      <a href="#" class="section-seeall">See all <span aria-hidden="true">→</span></a>
+    </header>
+
+    <div class="feat-grid" role="list" id="featGrid"></div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 05 — BROWSE BY CITY                                                     -->
+<!-- ====================================================================== -->
+<section class="section" id="rent" data-screen-label="Browse by city" aria-label="Browse by city">
+  <div class="section-inner">
+    <header class="section-head">
+      <div>
+        <h2 class="section-title">Browse by city</h2>
+        <p class="section-lede">Where Haizer is most active — tap a city to see every listing nearby.</p>
+      </div>
+      <a href="#" class="section-seeall">All cities <span aria-hidden="true">→</span></a>
+    </header>
+    <div class="cities-grid" role="list" id="citiesGrid"></div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 06 — INVESTOR OPPORTUNITIES                                             -->
+<!-- ====================================================================== -->
+<section class="section" id="investors" data-screen-label="Investor opportunities" aria-label="Investor opportunities">
+  <div class="section-inner">
+    <header class="section-head">
+      <div>
+        <h2 class="section-title">Investor opportunities</h2>
+        <p class="section-lede">Off-market flips and BRRRR-ready properties with the deal math run for you.</p>
+      </div>
+      <a href="#" class="section-seeall">All opportunities <span aria-hidden="true">→</span></a>
+    </header>
+
+    <div class="io-columns">
+      <div aria-labelledby="col-flips">
+        <div class="col-head">
+          <h3 class="col-title" id="col-flips">Flips <span class="col-title-count">(218)</span></h3>
+          <p class="col-sub">Below-ARV, 60–120 day projects</p>
+        </div>
+        <div class="col-list" id="flipsList"></div>
+      </div>
+      <div aria-labelledby="col-brrrr">
+        <div class="col-head">
+          <h3 class="col-title" id="col-brrrr">BRRRR-ready <span class="col-title-count">(94)</span></h3>
+          <p class="col-sub">Refi-friendly, positive cash flow projected</p>
+        </div>
+        <div class="col-list" id="brrrList"></div>
+      </div>
+    </div>
+
+    <div class="io-cta-row">
+      <a href="#" class="cta-outline">
+        Analyze any deal
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 07 — FEATURED AGENTS & LENDERS                                          -->
+<!-- ====================================================================== -->
+<section class="rail-section" data-screen-label="Featured agents and lenders" aria-label="Featured agents and lenders">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">Featured agents &amp; lenders</h2>
+      <p class="section-lede">Vetted professionals in the markets you're searching — sponsored, not paid placement in listings.</p>
+    </div>
+    <div class="scroll-ctrls">
+      <button class="scroll-btn" id="prevBtn" type="button" aria-label="Scroll left">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M10 13L5 8l5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="scroll-btn" id="nextBtn" type="button" aria-label="Scroll right">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="rail-wrap">
+    <div class="rail" id="proRail" role="list"></div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 08 — FREE TOOLS                                                         -->
+<!-- ====================================================================== -->
+<section class="section" id="tools" data-screen-label="Free tools" aria-label="Free tools for investors">
+  <div class="section-inner">
+    <header class="section-head">
+      <div>
+        <h2 class="section-title">Free tools for investors</h2>
+        <p class="section-lede">No login, no paywall — run a deal in seconds and save it to your account when you're ready.</p>
+      </div>
+      <a href="#" class="section-seeall">All tools <span aria-hidden="true">→</span></a>
+    </header>
+    <div class="tools-grid" role="list" id="toolsGrid"></div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 09 — HOW IT WORKS                                                       -->
+<!-- ====================================================================== -->
+<section class="section" data-screen-label="How it works" aria-label="How Haizer works">
+  <div class="section-inner">
+    <div class="how-head">
+      <span class="how-eyebrow">// three steps</span>
+      <h2 class="section-title" style="text-align:center; margin: 0 0 16px;">How Haizer works</h2>
+      <p class="section-lede" style="margin: 0 auto; text-align: center; max-width: 56ch;">List, browse, and close — without paying anyone for permission to look at the market.</p>
+    </div>
+
+    <div class="how-steps">
+      <div class="step">
+        <div class="step__circle" aria-hidden="true">01</div>
+        <div class="step__body">
+          <h3 class="step__title">Search &amp; save</h3>
+          <p class="step__desc">Find homes, flips, rentals. All free.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__circle" aria-hidden="true">02</div>
+        <div class="step__body">
+          <h3 class="step__title">Connect direct</h3>
+          <p class="step__desc">Message sellers or call agents. No middleman.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__circle" aria-hidden="true">03</div>
+        <div class="step__body">
+          <h3 class="step__title">Close confidently</h3>
+          <p class="step__desc">Run numbers, find lenders, hire contractors.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 10 — LOCAL PROS                                                         -->
+<!-- ====================================================================== -->
+<section class="section" id="directory" data-screen-label="Local pros" aria-label="Local pros, ready when you are">
+  <div class="section-inner">
+    <div class="lp-head">
+      <h2 class="section-title" style="text-align:center; margin:0 0 12px;">Local pros, ready when you are</h2>
+      <p class="section-lede" style="margin:0 auto; text-align:center;">Verified contractors, lawyers, and inspectors near every listing.</p>
+    </div>
+    <div class="lp-grid" role="list" id="proTiles"></div>
+    <div class="lp-cta-row">
+      <a href="#" class="lp-cta">
+        Browse the directory
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 11 — LIST YOUR PROPERTY CTA                                             -->
+<!-- ====================================================================== -->
+<section class="cta-band" id="sell" data-screen-label="List your property CTA" aria-label="Sell or rent — totally free">
+  <div class="cta-band-inner">
+    <span class="cta-band__eyebrow">// for owners and landlords</span>
+    <h2 class="cta-band__headline" id="ctaHeadline">Sell or rent — totally free</h2>
+    <p class="cta-band__sub" id="ctaSub">No commissions, no hidden fees. List in minutes.</p>
+    <a href="#" class="btn-cream">
+      Start a listing
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <div class="cta-fine" aria-hidden="true">
+      <span>free forever</span><span class="dot"></span>
+      <span>2-minute setup</span><span class="dot"></span>
+      <span>cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- 12 — FOOTER                                                             -->
+<!-- ====================================================================== -->
+<footer class="footer" id="field-notes" data-screen-label="Footer" aria-label="Footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="brand-block">
+        <a href="#" class="brand-mark" aria-label="Haizer home">
+          <span class="brand-mark__icon" aria-hidden="true"><span class="brand-mark__cutout"></span></span>
+          <span>Haizer</span>
+        </a>
+        <p class="brand-tag">Homes. Flips. Rentals. Direct.</p>
+        <p class="brand-sub">Buy, sell, rent, and flip — all in one place. Free to list, always.</p>
+      </div>
+
+      <div class="fcols">
+        <div>
+          <h4 class="fcol__title">Buy</h4>
+          <ul class="fcol__list">
+            <li><a class="fcol__link" href="#">Homes for sale</a></li>
+            <li><a class="fcol__link" href="#">New construction</a></li>
+            <li><a class="fcol__link" href="#">Open houses</a></li>
+            <li><a class="fcol__link" href="#">Foreclosures</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="fcol__title">Sell</h4>
+          <ul class="fcol__list">
+            <li><a class="fcol__link" href="#">List your home</a></li>
+            <li><a class="fcol__link" href="#">Home value</a></li>
+            <li><a class="fcol__link" href="#">Owner dashboard</a></li>
+            <li><a class="fcol__link" href="#">Seller guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="fcol__title">Investors</h4>
+          <ul class="fcol__list">
+            <li><a class="fcol__link" href="#">Flips</a></li>
+            <li><a class="fcol__link" href="#">BRRRR-ready</a></li>
+            <li><a class="fcol__link" href="#">Off-market</a></li>
+            <li><a class="fcol__link" href="#">Auctions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="fcol__title">Tools &amp; directory</h4>
+          <ul class="fcol__list">
+            <li><a class="fcol__link" href="#">Deal analyzer</a></li>
+            <li><a class="fcol__link" href="#">Mortgage calculator</a></li>
+            <li><a class="fcol__link" href="#">BRRRR calculator</a></li>
+            <li><a class="fcol__link" href="#">Find a pro</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="fcol__title">About</h4>
+          <ul class="fcol__list">
+            <li><a class="fcol__link" href="#">Our story</a></li>
+            <li><a class="fcol__link" href="#">Field notes</a></li>
+            <li><a class="fcol__link" href="#">Press</a></li>
+            <li><a class="fcol__link" href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="fcities" aria-label="Popular cities">
+      <span class="fcities__label">// popular</span>
+      <a href="#" class="fcities__link">Boro Park</a>
+      <span class="fcities__dot" aria-hidden="true">·</span>
+      <a href="#" class="fcities__link">Williamsburg</a>
+      <span class="fcities__dot" aria-hidden="true">·</span>
+      <a href="#" class="fcities__link">Monsey</a>
+      <span class="fcities__dot" aria-hidden="true">·</span>
+      <a href="#" class="fcities__link">Scranton</a>
+      <span class="fcities__dot" aria-hidden="true">·</span>
+      <a href="#" class="fcities__link">Linden</a>
+    </div>
+
+    <div class="fbottom">
+      <div class="fbottom__left">
+        <a class="fbottom__link" href="#">Privacy</a>
+        <a class="fbottom__link" href="#">Terms</a>
+        <a class="fbottom__link" href="#">Cookies</a>
+        <a class="fbottom__link" href="#">Contact</a>
+      </div>
+      <div class="fbottom__right">
+        <span class="fbottom__copy">© 2026 Haizer</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- React + Babel for the Tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Render all dynamic content first, then mount Tweaks panel -->
+<script src="haizer-data.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="haizer-tweaks.jsx"></script>
+
+</body>
+</html>
