@@ -74,13 +74,8 @@ Define these in `globals.css` as CSS variables and as `tailwind.config.ts` exten
 
 ### Typography
 
-- **Public marketplace font:** Plus Jakarta Sans — homepage, listings, search, detail pages, sign-up flow
-- **Admin / dashboard font:** Inter — agent dashboard and admin tools only. Nothing on the public site uses Inter.
-- Both loaded via `next/font/google` with CSS variables `--font-jakarta` and `--font-inter`
-- Weights: 400 (body) · 500 (buttons, stats, labels, badges) · 600 (headings, H1–H3) · 700 (prices)
-- Prices: `font-weight: 700`, `letter-spacing: -0.02em`
-- H1 / property titles: `font-weight: 600`, `letter-spacing: -0.01em`
-- Body text: `font-weight: 400`, `line-height: 1.55`
+- **Font family:** Outfit (Google Fonts) — load via `next/font/google`
+- Weights used: 400 (body) · 500 (subheads, buttons) · 600 (headings)
 - Large-scale hierarchy: big confident prices and headings. Never tiny text.
 - **Sentence case always.** Never Title Case. Never ALL CAPS.
 - Minimum body text size: 14px. Prefer 16px.
@@ -148,8 +143,8 @@ Define these in `globals.css` as CSS variables and as `tailwind.config.ts` exten
     /functions          — Edge Functions (scheduled jobs, image processing)
   /emails               — React Email templates
   /docs
+    /spec               — feature specs (read by you, the developer)
     haizer-v5-state-export.md — master reference
-    build-playbook.md   — step-by-step build guide
   /public               — static assets, favicons
   CLAUDE.md             — this file
 ```
