@@ -45,7 +45,7 @@ export function Button({
   return (
     <Comp
       className={[
-        'inline-flex items-center justify-center gap-2 rounded-[7px] font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#064E3B]/30 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]',
+        'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#064E3B]/30 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]',
         variantClasses[variant],
         sizeClasses[size],
         className,

@@ -65,8 +65,12 @@ export function Nav() {
             <>
               <Link
                 href="/listings/new"
-                className="hidden md:block text-sm font-medium text-[#1A1A1A] hover:text-[#064E3B] transition-colors"
+                className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[#064E3B] px-3 py-1.5 rounded-full hover:bg-[#D1FAE5] transition-all duration-150"
               >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
+                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M8 5v6M5 8h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
                 List for free
               </Link>
 
@@ -116,12 +120,16 @@ export function Nav() {
             <>
               <Link
                 href="/listings/new"
-                className="hidden md:block text-sm font-medium text-[#1A1A1A] hover:text-[#064E3B] transition-colors"
+                className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[#064E3B] px-3 py-1.5 rounded-full hover:bg-[#D1FAE5] transition-all duration-150"
               >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
+                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M8 5v6M5 8h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
                 List for free
               </Link>
               <Button asChild size="sm">
-                <Link href="/signup">Sign up</Link>
+                <Link href="/signin">Sign in</Link>
               </Button>
             </>
           )}
