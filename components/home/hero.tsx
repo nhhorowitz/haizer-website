@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSearchSuggestions, SuggestionDropdown } from '@/components/listings/search-autocomplete'
 
 type Tab = 'buy' | 'rent' | 'flip'
 
@@ -11,10 +12,36 @@ const tabs: { id: Tab; label: string }[] = [
   { id: 'flip', label: 'Flip' },
 ]
 
-const pills: Record<Tab, string[]> = {
-  buy: ['Boro Park', 'Williamsburg', 'Flatbush', 'Under $800K'],
-  rent: ['Boro Park', 'Lakewood', '3+ beds', 'Under $3K/mo'],
-  flip: ['Under $500K', 'Boro Park', 'BRRRR-ready', 'High ARV'],
+// Each pill navigates directly to the right filtered URL
+const pills: Record<Tab, { label: string; href: string }[]> = {
+  buy: [
+    { label: 'Boro Park', href: '/listings?type=for_sale&city=boro-park' },
+    { label: 'Williamsburg', href: '/listings?type=for_sale&city=williamsburg' },
+    { label: 'Flatbush', href: '/listings?type=for_sale&city=flatbush' },
+    { label: 'Under $800K', href: '/listings?type=for_sale&max_price=800000' },
+  ],
+  rent: [
+    { label: 'Boro Park', href: '/listings?type=for_rent&city=boro-park' },
+    { label: 'Lakewood', href: '/listings?type=for_rent&city=lakewood' },
+    { label: '3+ beds', href: '/listings?type=for_rent&beds=3' },
+    { label: 'Under $3K/mo', href: '/listings?type=for_rent&max_price=3000' },
+  ],
+  flip: [
+    { label: 'Under $500K', href: '/listings?type=flip&max_price=500000' },
+    { label: 'Boro Park', href: '/listings?type=flip&city=boro-park' },
+    { label: 'BRRRR-ready', href: '/listings?type=flip' },
+    { label: 'High ARV', href: '/listings?type=flip' },
+  ],
+}
+
+const cityMap: Record<string, string> = {
+  'boro park': 'boro-park',
+  'williamsburg': 'williamsburg',
+  'flatbush': 'flatbush',
+  'monsey': 'monsey',
+  'lakewood': 'lakewood',
+  'kiryas joel': 'kiryas-joel',
+  'kj': 'kiryas-joel',
 }
 
 export function Hero() {
@@ -22,7 +49,10 @@ export function Hero() {
   const [tab, setTab] = useState<Tab>('buy')
   const [query, setQuery] = useState('')
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [showSuggestions, setShowSuggestions] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const typeParam = tab === 'buy' ? 'for_sale' : tab === 'rent' ? 'for_rent' : 'flip'
+  const suggestions = useSearchSuggestions(query, typeParam)
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -38,7 +68,9 @@ export function Hero() {
     e.preventDefault()
     const type = tab === 'buy' ? 'for_sale' : tab === 'rent' ? 'for_rent' : 'flip'
     const params = new URLSearchParams({ type })
-    if (query) params.set('q', query)
+    const citySlug = cityMap[query.trim().toLowerCase()]
+    if (citySlug) params.set('city', citySlug)
+    else if (query.trim()) params.set('q', query.trim())
     router.push(`/listings?${params}`)
   }
 
@@ -66,6 +98,7 @@ export function Hero() {
 
         {/* Search bar */}
         <div className="max-w-2xl mx-auto">
+          <div className="relative">
           <form onSubmit={handleSearch}>
             <div className="flex items-center h-14 rounded-full border border-[#E2E8F0] bg-white shadow-md shadow-black/[0.06] focus-within:border-[#064E3B] focus-within:ring-2 focus-within:ring-[#064E3B]/15 transition-all overflow-visible relative">
 
@@ -117,6 +150,8 @@ export function Hero() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setShowSuggestions(false)}
                 placeholder="City, neighborhood, or address…"
                 className="flex-1 h-full px-3 text-sm text-[#1A1A1A] placeholder:text-[#94A3B8] focus:outline-none bg-transparent"
               />
@@ -131,16 +166,21 @@ export function Hero() {
             </div>
           </form>
 
+          {showSuggestions && suggestions.length > 0 && (
+            <SuggestionDropdown items={suggestions} onSelect={(href) => { router.push(href); setShowSuggestions(false); setQuery('') }} />
+          )}
+          </div>
+
           {/* Quick pills */}
           <div className="flex flex-wrap justify-center gap-2 mt-4">
             {pills[tab].map((pill) => (
               <button
-                key={pill}
+                key={pill.label}
                 type="button"
-                onClick={() => setQuery(pill)}
+                onClick={() => router.push(pill.href)}
                 className="px-3.5 py-1.5 text-xs font-medium text-[#64748B] border border-[#E2E8F0] rounded-full hover:border-[#064E3B] hover:text-[#064E3B] transition-colors focus:outline-none"
               >
-                {pill}
+                {pill.label}
               </button>
             ))}
           </div>
